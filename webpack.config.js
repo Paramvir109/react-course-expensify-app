@@ -1,33 +1,54 @@
-const path = require('path')
+const path = require('path');
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');
 
-module.exports = {
-    entry : './src/app.js',
-    output : {
-        path: path.join(__dirname,'public'),
-        filename : 'bundle.js'
-    },
-    module : {
-        rules :[{
-            loader : 'babel-loader',
-            test : /\.js$/, //Applied on all the files ending in .js()
-            exclude : /node_modules/
+module.exports =  (env) => {
+    const isProduction = env === 'production';
+    const CSSExtract = new ExtractTextPlugin('styles.css');
+
+   return{
+        entry : './src/app.js',
+        output : {
+            path: path.join(__dirname,'public'),
+            filename : 'bundle.js'
         },
-        {
-            test : /\.s?css$/,//Making s optional(We load normalize.css as we,,)
-            use : [
-                'style-loader',
-                'css-loader',
-                'sass-loader'
-            ]
-        }]
-    },
-    devtool : 'cheap-module-eval-source-map',//suitable for develpoment.Helps in debugging in chrome console
-    devServer : {
-        contentBase : path.join(__dirname,'public'), //This tells webpack-dev-server to serve the files from the dist directory on localhost:8080
-        historyApiFallback : true//This tells to always use index.html for all routes(client side routing)
+        module : {
+            rules :[{
+                loader : 'babel-loader',
+                test : /\.js$/, //Applied on all the files ending in .js()
+                exclude : /node_modules/
+            },
+            {
+                test : /\.s?css$/,//Making s optional(We load normalize.css as we,,)
+                use : CSSExtract.extract({
+                    //We write this way to use source maps for css files
+                    use : [
+                        {
+                            loader : 'css-loader',
+                            options : {
+                                sourceMap : true
+                            }
+                        },
+                        {
+                            loader : 'sass-loader',
+                            options : {
+                                sourceMap : true
+                            }
+                        }
+                    ]
+                })
+            }]
+        },
+        plugins : [CSSExtract],
 
-    }//It also serves bundle.js from memory therefore even if we delete bundle.js physically it will catch it by itself
-    //without generating the file
+        //suitable for develpoment.Helps in debugging in chrome console
+        devtool : isProduction? 'source-map' : 'inline-source-map',
+        devServer : {
+            contentBase : path.join(__dirname,'public'), //This tells webpack-dev-server to serve the files from the dist directory on localhost:8080
+            historyApiFallback : true//This tells to always use index.html for all routes(client side routing)
+
+        }//It also serves bundle.js from memory therefore even if we delete bundle.js physically it will catch it by itself
+        //without generating the file
+    }
     
 }
 //babel-cli allows it to run from cmd

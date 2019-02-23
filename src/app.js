@@ -11,8 +11,7 @@ import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'react-dates/lib/css/_datepicker.css';
 
-
-// const store = configureStore();
+const store = configureStore();
 // store.subscribe(() => {
 //     const state = store.getState();
 //     const visisbleExpenses = getVisibleExpenses(state.expenses, state.filters)

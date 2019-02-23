@@ -11,7 +11,7 @@ beforeEach(() => {
      history = {
         push : jest.fn()
     }
-     wrapper = shallow(<EditExpensePage editExpense={editExpense} removeExpense={removeExpense} history={history} expense={expenses[1]} />);
+     wrapper = shallow(<EditExpensePage editExpense={editExpense} removeExpense={removeExpense} history={history} expense={expenses[0]} />);
 })
 
 test('Should render editExpense component', () => {
@@ -20,14 +20,14 @@ test('Should render editExpense component', () => {
 
 test('Should handle editExpense ', () => {
     
-    wrapper.find('ExpenseForm').prop('onSubmit')(expenses[1]);
-    expect(editExpense).toHaveBeenLastCalledWith(expenses[1].id,expenses[1]);
+    wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
+    expect(editExpense).toHaveBeenLastCalledWith(expenses[0].id,expenses[0]);
     expect(history.push).toHaveBeenLastCalledWith('/');
 
 })
 test('Should handle removeExpense ', () => {
     
     wrapper.find('button').simulate('click');
-    expect(removeExpense).toHaveBeenLastCalledWith({id : expenses[1].id});
+    expect(removeExpense).toHaveBeenLastCalledWith({id : expenses[0].id});
     expect(history.push).toHaveBeenLastCalledWith('/');
 })
