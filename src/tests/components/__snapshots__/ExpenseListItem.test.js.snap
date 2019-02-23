@@ -12,9 +12,10 @@ exports[`Should render expense list item component with an expense 1`] = `
     </h3>
   </NavLink>
   <p>
-    100
-     - 
-    0
+    Rs.
+    1.00
+    -
+    1st Jan 1970
   </p>
 </div>
 `;
