@@ -8,7 +8,7 @@ module.exports =  (env) => {
    return{
         entry : './src/app.js',
         output : {
-            path: path.join(__dirname,'public'),
+            path: path.join(__dirname,'public','dist'),
             filename : 'bundle.js'
         },
         module : {
@@ -44,7 +44,8 @@ module.exports =  (env) => {
         devtool : isProduction? 'source-map' : 'inline-source-map',
         devServer : {
             contentBase : path.join(__dirname,'public'), //This tells webpack-dev-server to serve the files from the dist directory on localhost:8080
-            historyApiFallback : true//This tells to always use index.html for all routes(client side routing)
+            historyApiFallback : true,//This tells to always use index.html for all routes(client side routing)
+            publicPath : '/dist/'
 
         }//It also serves bundle.js from memory therefore even if we delete bundle.js physically it will catch it by itself
         //without generating the file
