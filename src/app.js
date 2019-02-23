@@ -12,16 +12,13 @@ import getVisibleExpenses from './selectors/expenses';
 import 'react-dates/lib/css/_datepicker.css';
 
 
-const store = configureStore();
-store.subscribe(() => {
-    const state = store.getState();
-    const visisbleExpenses = getVisibleExpenses(state.expenses, state.filters)
-    console.log(visisbleExpenses);
+// const store = configureStore();
+// store.subscribe(() => {
+//     const state = store.getState();
+//     const visisbleExpenses = getVisibleExpenses(state.expenses, state.filters)
+//     console.log(visisbleExpenses);
 
-})
-store.dispatch(addExpense({description : 'Water bill', amount:4500}));
-store.dispatch(addExpense({description : 'Gas bill', createdAt:1000}));
-store.dispatch(addExpense({description : 'Rent', amount:109500}));
+// })
 // setTimeout(() => {
 //     store.dispatch(setTextFilter('water'));
 
