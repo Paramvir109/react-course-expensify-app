@@ -13,7 +13,7 @@ const expenses = [{
     amount : 122000,
     createdAt : moment(0).add(4, 'days').valueOf()
 }, {
-    id : '1',
+    id : '3',
     description : 'Credit card',
     note : '',
     amount : 1020000,

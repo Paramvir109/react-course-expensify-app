@@ -6,7 +6,7 @@ import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
 import configureStore from './store/storeConfig';
 
-import { addExpense } from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'react-dates/lib/css/_datepicker.css';
@@ -25,7 +25,7 @@ const store = configureStore();
 // }, 3000);
 
 const appRoot = document.getElementById('app')
-
+console.log('Ok')
 const jsx = (
     <Provider store={store}>
         <AppRouter />
@@ -34,6 +34,13 @@ const jsx = (
 
 
 
-ReactDOM.render(jsx, appRoot)
+ReactDOM.render(<p>Loading...</p>, appRoot)
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(jsx, appRoot)
+
+})
+
+
+
 
 

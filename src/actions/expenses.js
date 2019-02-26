@@ -48,3 +48,25 @@ export  const removeExpense = ({id} = {}) => ({
     type : 'REMOVE_EXPENSE',
     id
 })      
+
+//SET_EXPENSE (will set expenses array that we fetch from firebase to redux store)
+
+export const setExpenses = (expenses) => ({
+    type : 'SET_EXPENSES',
+    expenses
+}) 
+
+export const startSetExpenses = () => {
+    return (dispatch) => {
+        return database.ref('expenses').once('value').then((snapshot) => {
+            let expenses = []
+            snapshot.forEach((childSnapshot) => {
+                expenses.push({
+                    id : childSnapshot.key,
+                    ...childSnapshot.val()
+                })
+            })
+            dispatch(setExpenses(expenses));
+        })
+    }
+}
