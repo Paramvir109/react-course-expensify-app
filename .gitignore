@@ -1,4 +1,5 @@
 node_modules
 src/playground/learn.txt
 public/dist
-
+.env.test
+.env.development
