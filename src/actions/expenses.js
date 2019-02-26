@@ -47,7 +47,15 @@ export const editExpense = (id, updates) => ({
 export  const removeExpense = ({id} = {}) => ({
     type : 'REMOVE_EXPENSE',
     id
-})      
+})  
+
+export const startRemoveExpense = ({id} = {}) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).remove().then(() =>{
+            dispatch(removeExpense({id}));
+        })
+    }
+}
 
 //SET_EXPENSE (will set expenses array that we fetch from firebase to redux store)
 

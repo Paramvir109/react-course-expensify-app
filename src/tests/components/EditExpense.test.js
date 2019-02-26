@@ -3,15 +3,15 @@ import React from 'react';
 import { EditExpensePage } from '../../components/EditExpense';
 import expenses from '../fixtures/expenses';
 
-let editExpense,removeExpense, history, wrapper;
+let editExpense,startRemoveExpense, history, wrapper;
 
 beforeEach(() => {
     editExpense = jest.fn();
-    removeExpense = jest.fn();
+    startRemoveExpense = jest.fn();
      history = {
         push : jest.fn()
     }
-     wrapper = shallow(<EditExpensePage editExpense={editExpense} removeExpense={removeExpense} history={history} expense={expenses[0]} />);
+     wrapper = shallow(<EditExpensePage editExpense={editExpense} startRemoveExpense={startRemoveExpense} history={history} expense={expenses[0]} />);
 })
 
 test('Should render editExpense component', () => {
@@ -25,9 +25,9 @@ test('Should handle editExpense ', () => {
     expect(history.push).toHaveBeenLastCalledWith('/');
 
 })
-test('Should handle removeExpense ', () => {
+test('Should handle startRemoveExpense ', () => {
     
     wrapper.find('button').simulate('click');
-    expect(removeExpense).toHaveBeenLastCalledWith({id : expenses[0].id});
+    expect(startRemoveExpense).toHaveBeenLastCalledWith({id : expenses[0].id});
     expect(history.push).toHaveBeenLastCalledWith('/');
 })
