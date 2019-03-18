@@ -1,12 +1,16 @@
-import {BrowserRouter, Route, Switch } from 'react-router-dom';
+import {Router, Route, Switch } from 'react-router-dom';
 import React from 'react'
 
-import  Header  from './../components/Header';
 import  ExpenseDashboardPage  from './../components/ExpenseDashboard';
 import  AddExpensePage  from './../components/CreateExpense';
 import  EditExpensePage  from './../components/EditExpense';
-import  HelpPage  from './../components/Help';
 import  NotFoundPage  from './../components/Error';
+import  LoginPage  from './../components/LoginPage';
+import createHistory from 'history/createBrowserHistory';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+
+export const history = createHistory()
 
 // We define routing config in jsx only
 // BrowserRouter accepts a single content only
@@ -17,17 +21,16 @@ import  NotFoundPage  from './../components/Error';
   //Switch -(moves down till it finds a match and that route only)
   // :id being sent as prop (but no /edit page will exist now)
   const AppRouter = () => (
-    <BrowserRouter>
+    <Router history={history}>
       <div>
-        <Header />
         <Switch>
-            <Route path="/" component={ExpenseDashboardPage} exact={true} />
-            <Route path="/create" component={AddExpensePage} />
-            <Route path="/edit/:id" component={EditExpensePage} />
-            <Route path="/help" component={HelpPage} />
+            <PublicRoute path="/" component={LoginPage} exact={true} />
+            <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
+            <PrivateRoute path="/create" component={AddExpensePage} />
+            <PrivateRoute path="/edit/:id" component={EditExpensePage} />
             <Route component={NotFoundPage} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 export default AppRouter;

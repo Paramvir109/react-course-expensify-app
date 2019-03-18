@@ -11,7 +11,9 @@ const config = {
 firebase.initializeApp(config);
 const database = firebase.database();
 
-export {firebase, database as default };
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();//Used for authentication
+
+export {firebase, googleAuthProvider, database as default };
 
 //In sql we have tables, mongoDB - collections, firebase -> references
 //If we dont provide anything to ref it accesses the root of db
