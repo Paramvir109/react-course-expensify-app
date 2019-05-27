@@ -1,0 +1,21 @@
+.box-layout {
+    align-items: center;
+    background-image: url('/images/bg.jpg');//only public folder is accessible in web browser
+    background-size: cover;//to still make sures it covers the container
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.box-layout__box {
+    background: fade-out(white,  .25);
+    padding: $l-size $m-size;
+    border-radius: 3px;
+    text-align: center;
+    width: 25rem;
+}
+.box-layout__title {
+    line-height: 1;
+    margin:0 0 $m-size 0;
+}
