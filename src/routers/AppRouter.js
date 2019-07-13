@@ -6,11 +6,12 @@ import  AddExpensePage  from './../components/CreateExpense';
 import  EditExpensePage  from './../components/EditExpense';
 import  NotFoundPage  from './../components/Error';
 import  LoginPage  from './../components/LoginPage';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history'
+
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
-export const history = createHistory()
+export const history = createBrowserHistory()
 
 // We define routing config in jsx only
 // BrowserRouter accepts a single content only

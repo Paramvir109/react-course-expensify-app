@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
       setTextFilter : (value) => dispatch(setTextFilter(value)),
       setStartDate : (startDate) => dispatch(setStartDate(startDate)),
-      setEndDate : (endDate) => dispatch(setTextFilter(endDate)),
+      setEndDate : (endDate) => dispatch(setEndDate(endDate)),
       sortByAmount : () => dispatch(sortByAmount()),
       sortByDate : () => dispatch(sortByDate()),
     }
