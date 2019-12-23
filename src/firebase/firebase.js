@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';//importing all the named exports and dumping them on firebasse variable
-
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
